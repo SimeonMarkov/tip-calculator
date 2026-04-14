@@ -1,8 +1,9 @@
-.tip-percentage-container {
+.tip-percentage-grid {
     display: grid;
-    gap: 0.5rem;
+    gap: 1rem;
     grid-template-rows: repeat(3, 1fr);
     grid-template-columns: repeat(2, 1fr);
+    margin-block-start: 0.5rem;
 }
 
 .tip-control {
@@ -10,16 +11,18 @@
     text-align: center;
     font-size: 1.5rem;
     font-weight: 700;
+    padding-block: 0.5rem;
 }
 
 .predefined-tip-percentage {
     color: white;
-    background-color: #013a31;
+    background-color: #054349;
 }
 
 .custom-tip-control {
     color: black;
     background-color: #c1c1c1;
+    font-weight: 500;
 }
 
 .predefined-tip-percentage.selected {

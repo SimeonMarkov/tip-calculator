@@ -1,8 +1,11 @@
 .total-summary {
-    background-color: #013a31;
+    background-color: var(--container-background);
     color: white;
     display: flex;
     flex-direction: column;
+    gap: 1rem;
+    padding: 1.3rem 1rem 0.3rem;
+    border-radius: var(--border-radius);
 }
 
 .summary-row {
@@ -16,12 +19,13 @@
 
 .per-person::before {
     content: "/ person";
+    color: #749893;
 }
 
 .btn {
-    background-color: #06ae9c;
+    background-color: #16d1bf;
     color: black;
-    width: 90%;
+    width: 100%;
     margin-inline: auto;
     text-align: center;
     text-transform: uppercase;
@@ -29,4 +33,10 @@
     padding-block: 1rem;
     margin-block: 1rem;
     border-radius: var(--border-radius);
+}
+
+.money-amount {
+    color: #16d1bf;
+    font-size: 1.5rem;
+    font-weight: 700;
 }

@@ -1,4 +1,8 @@
-.people-container {
+.people-container-grid {
     display: flex;
     justify-content: space-between;
+    background-color: #efefef;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    margin-block-start: 0.5rem;
 }

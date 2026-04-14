@@ -15,17 +15,18 @@
 }
 
 .predefined-tip-percentage {
-    color: white;
-    background-color: #054349;
+    color: var(--gray_50);
+    background-color: var(--green_900);
 }
 
 .custom-tip-control {
-    color: black;
-    background-color: #c1c1c1;
+    color: var(--gray_500);
+    background-color: var(--gray_50);
     font-weight: 500;
+    padding-inline-start: 2rem;
 }
 
 .predefined-tip-percentage.selected {
     color: black;
-    background-color: #06ae9c;
+    background-color: var(--green_400);
 }

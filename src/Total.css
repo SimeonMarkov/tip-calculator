@@ -1,5 +1,5 @@
 .total-summary {
-    background-color: var(--container-background);
+    background-color: var(--green_900);
     color: white;
     display: flex;
     flex-direction: column;
@@ -23,8 +23,8 @@
 }
 
 .btn {
-    background-color: #16d1bf;
-    color: black;
+    background-color: var(--green_400);
+    color: #3e3e3e;
     width: 100%;
     margin-inline: auto;
     text-align: center;
@@ -36,7 +36,7 @@
 }
 
 .money-amount {
-    color: #16d1bf;
+    color: var(--green_400);
     font-size: 1.5rem;
     font-weight: 700;
 }

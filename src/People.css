@@ -1,8 +1,15 @@
 .people-container-grid {
     display: flex;
     justify-content: space-between;
-    background-color: #efefef;
+    background-color: var(--gray_50);
     padding: 0.5rem 1rem;
     border-radius: var(--border-radius);
     margin-block-start: 0.5rem;
+    color: var(--green_900);
+    font-weight: 900;
+}
+
+.people-container-grid img {
+    width: 5vw;
+    height: 4vh;
 }

@@ -30,7 +30,7 @@ export default function FormComponent() {
                 const selectedTipString = document.querySelector('.tip-control.selected')?.textContent;
                 const selectedTipNumber = selectedTipString ? Number(selectedTipString?.slice(0, selectedTipString.length - 1)) : 0;
 
-                setTipPerPerson((Number(bill) / numberOfPeople).toFixed(2));
+                setTipPerPerson((Number(bill) * selectedTipNumber / 100 / numberOfPeople).toFixed(2));
                 setTotalPerPerson(((Number(bill) * (1 + selectedTipNumber / 100)) / numberOfPeople).toFixed(2));
             } else {
                 setTipPerPerson('0.00');

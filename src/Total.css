@@ -1,0 +1,32 @@
+.total-summary {
+    background-color: #013a31;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.per-person {
+    display: block;
+}
+
+.per-person::before {
+    content: "/ person";
+}
+
+.btn {
+    background-color: #06ae9c;
+    color: black;
+    width: 90%;
+    margin-inline: auto;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding-block: 1rem;
+    margin-block: 1rem;
+    border-radius: var(--border-radius);
+}

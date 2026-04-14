@@ -1,0 +1,32 @@
+:root {
+    --border-radius: 0.3rem;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #abd3d3;
+}
+
+.app-name {
+    text-transform: uppercase;
+    width: 28%;
+    word-wrap: break-word;
+    margin-inline: auto;
+    letter-spacing: 0.5rem;
+    margin-block: 2rem;
+}
+
+main {
+    padding-inline: 2rem;
+    background-color: white;
+    height: 100vh;
+    border-radius: 1rem 1rem 0 0;
+}
+
+.attribution { font-size: 0.6875rem; text-align: center; }
+.attribution a { color: hsl(228, 45%, 44%); }

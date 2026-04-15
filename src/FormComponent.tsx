@@ -6,7 +6,7 @@ export default function FormComponent() {
 
     const tips: string[] = ['5%', '10%', '15%', '25%', '50%']
     const [bill, setBill] = useState<string>('0.00');
-    const [numberOfPeople, setNumberOfPeople] = useState<number>(0);
+    const [numberOfPeople, setNumberOfPeople] = useState<number>(1);
     const [tipSelected, setTipSelected] = useState<number>(0);
 
     const customTipRef = useRef<HTMLInputElement>(null);
@@ -49,7 +49,7 @@ export default function FormComponent() {
                 <div className="bill-container">
                     <label htmlFor="bill-amount">Bill</label>
                     <div className="bill-container-grid">
-                        <input type="number" min={0.01} className="bill-amount" id="bill-amount" value={bill}
+                        <input type="number" min={0} className="bill-amount" id="bill-amount" value={bill}
                                onChange={e => handleChange(e, setBill, String)}/>
                     </div>
                 </div>

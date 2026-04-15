@@ -31,9 +31,14 @@ export default function FormComponent() {
     const handleReset = () => {
         customTipRef.current.value = 'Custom';
         billRef.current.value = '0.00';
-        numberOfPeopleRef.current.value = '0.00';
+        numberOfPeopleRef.current.value = '0';
         tipPerPersonRef.current.innerText = '$0.00';
         totalPerPersonRef.current.innerText = '$0.00';
+
+        setBill('0.00');
+        setNumberOfPeople(0);
+        setTipSelected(0);
+        document.querySelector('.selected')?.classList.remove("selected");
     }
 
     useEffect(() => {

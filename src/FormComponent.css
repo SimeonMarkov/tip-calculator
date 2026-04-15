@@ -122,6 +122,7 @@ form {
 
 input {
     border: none;
+    width: 100%;
     background-color: transparent;
     font-size: 1.25rem;
     font-weight: 900;
@@ -131,13 +132,13 @@ input {
 
 
 .bill-amount {
-    background-image: url("images/icon-dollar.svg");
+    background-image: url("/tip-calculator/images/icon-dollar.svg");
     background-repeat: no-repeat;
     background-position: 1rem;
 }
 
 .people-number {
-    background-image: url("images/icon-person.svg");
+    background-image: url("/tip-calculator/images/icon-person.svg");
     background-repeat: no-repeat;
     background-position: 1rem;
 }
@@ -183,10 +184,6 @@ input {
 
     .summary-row {
         font-size: 1.25rem;
-    }
-
-    input {
-        width: 100%;
     }
 
     input:focus {

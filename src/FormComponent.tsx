@@ -1,37 +1,33 @@
-import Tip from "./Tip.tsx";
 import './FormComponent.css';
 import {useEffect, useState} from "react";
 import * as React from "react";
 
 export default function FormComponent() {
 
-    const tips = ['5%', '10%', '15%', '25%', '50%']
+    const tips: string[] = ['5%', '10%', '15%', '25%', '50%']
     const [bill, setBill] = useState<string>('0.00');
     const [numberOfPeople, setNumberOfPeople] = useState<number>(0);
     const [tipPerPerson, setTipPerPerson] = useState<string>('0.00');
     const [totalPerPerson, setTotalPerPerson] = useState<string>('0.00');
-    const [tipSelected, setTipSelected] = useState<string>('');
+    const [tipSelected, setTipSelected] = useState<number>(0);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>, setFunction: Function) => {
         setFunction(e.target.value);
     }
 
     const handleTipSelect = (e) => {
-        console.log(`${e.target.innerText} clicked`);
-        document.querySelector('.predefined-tip-percentage.selected')?.classList.remove("selected");
+        document.querySelector('.selected')?.classList.remove("selected");
         e.target.classList.add("selected");
-        setTipSelected(e.target.innerText);
+
+        setTipSelected(Number(e.target.innerText.replace('%', '')));
     }
 
     useEffect(() => {
         const interval = setTimeout(() => {
             if (numberOfPeople) {
 
-                const selectedTipString = document.querySelector('.tip-control.selected')?.textContent;
-                const selectedTipNumber = selectedTipString ? Number(selectedTipString?.slice(0, selectedTipString.length - 1)) : 0;
-
-                setTipPerPerson((Number(bill) * selectedTipNumber / 100 / numberOfPeople).toFixed(2));
-                setTotalPerPerson(((Number(bill) * (1 + selectedTipNumber / 100)) / numberOfPeople).toFixed(2));
+                setTipPerPerson((Number(bill) * tipSelected / 100 / numberOfPeople).toFixed(2));
+                setTotalPerPerson(((Number(bill) * (1 + tipSelected / 100)) / numberOfPeople).toFixed(2));
             } else {
                 setTipPerPerson('0.00');
                 setTotalPerPerson('0.00');
@@ -43,26 +39,24 @@ export default function FormComponent() {
     return (
         <form>
             <div className="bill-container">
-                <label htmlFor="">Bill</label>
+                <label htmlFor="bill-amount">Bill</label>
                 <div className="bill-container-grid">
-                    <img src="images/icon-dollar.svg" alt="Dollar sign"/>
-                    <input className="bill-amount" value={bill} onChange={e => handleChange(e, setBill)}/>
+                    <input type="number" className="bill-amount" id="bill-amount" value={bill} onChange={e => handleChange(e, setBill)}/>
                 </div>
             </div>
 
             <section className="tip-percentage-container">
                 <h4>Select Tip %</h4>
                 <div className="tip-percentage-grid">
-                    {tips.map(tip => (<Tip key={tip} className="tip-control predefined-tip-percentage" value={tip} handleSelect={handleTipSelect} />))}
-                    <Tip className="tip-control custom-tip-control" value="Custom" handleSelect={handleTipSelect}/>
+                    {tips.map(tip => (<span key={tip} className="tip-control predefined-tip-percentage" onClick={handleTipSelect}>{tip}</span>))}
+                    <input className="tip-control custom-tip-control" size="4" placeholder="Custom" onClick={handleTipSelect} onInput={(e) => setTipSelected(e.target.value)} />
                 </div>
             </section>
 
             <div className="people-container">
-                <h4>Number of people</h4>
+                <label htmlFor="people-number">Number of people</label>
                 <div className="people-container-grid">
-                    <img src="images/icon-person.svg" alt="Person sign"/>
-                    <input className="people-number" value={numberOfPeople}
+                    <input type="number" className="people-number" id="people-number" value={numberOfPeople}
                            onChange={(e) => handleChange(e, setNumberOfPeople)}/>
                 </div>
             </div>

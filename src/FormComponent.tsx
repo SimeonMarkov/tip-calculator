@@ -1,5 +1,5 @@
 import './FormComponent.css';
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import * as React from "react";
 
 export default function FormComponent() {
@@ -11,6 +11,12 @@ export default function FormComponent() {
     const [totalPerPerson, setTotalPerPerson] = useState<string>('0.00');
     const [tipSelected, setTipSelected] = useState<number>(0);
 
+    const customTipRef = useRef<HTMLInputElement>({});
+    const billRef = useRef<HTMLInputElement>({});
+    const numberOfPeopleRef = useRef<HTMLInputElement>({});
+    const tipPerPersonRef = useRef<HTMLSpanElement>({});
+    const totalPerPersonRef = useRef<HTMLSpanElement>({});
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>, setFunction: Function) => {
         setFunction(e.target.value);
     }
@@ -20,6 +26,14 @@ export default function FormComponent() {
         e.target.classList.add("selected");
 
         setTipSelected(Number(e.target.innerText.replace('%', '')));
+    }
+
+    const handleReset = () => {
+        customTipRef.current.value = 'Custom';
+        billRef.current.value = '0.00';
+        numberOfPeopleRef.current.value = '0.00';
+        tipPerPersonRef.current.innerText = '$0.00';
+        totalPerPersonRef.current.innerText = '$0.00';
     }
 
     useEffect(() => {
@@ -41,7 +55,7 @@ export default function FormComponent() {
             <div className="bill-container">
                 <label htmlFor="bill-amount">Bill</label>
                 <div className="bill-container-grid">
-                    <input type="number" className="bill-amount" id="bill-amount" value={bill} onChange={e => handleChange(e, setBill)}/>
+                    <input type="number" className="bill-amount" id="bill-amount" value={bill} ref={billRef} onChange={e => handleChange(e, setBill)}/>
                 </div>
             </div>
 
@@ -49,14 +63,14 @@ export default function FormComponent() {
                 <h4>Select Tip %</h4>
                 <div className="tip-percentage-grid">
                     {tips.map(tip => (<span key={tip} className="tip-control predefined-tip-percentage" onClick={handleTipSelect}>{tip}</span>))}
-                    <input className="tip-control custom-tip-control" size="4" placeholder="Custom" onClick={handleTipSelect} onInput={(e) => setTipSelected(e.target.value)} />
+                    <input className="tip-control custom-tip-control" size="4" placeholder="Custom" ref={customTipRef} onClick={handleTipSelect} onInput={(e) => setTipSelected(e.target.value)} />
                 </div>
             </section>
 
             <div className="people-container">
                 <label htmlFor="people-number">Number of people</label>
                 <div className="people-container-grid">
-                    <input type="number" className="people-number" id="people-number" value={numberOfPeople}
+                    <input type="number" className="people-number" id="people-number" value={numberOfPeople} ref={numberOfPeopleRef}
                            onChange={(e) => handleChange(e, setNumberOfPeople)}/>
                 </div>
             </div>
@@ -64,13 +78,13 @@ export default function FormComponent() {
             <section className="total-summary">
                 <div className="summary-row">
                     <div>Tip Amount<span className="per-person"></span></div>
-                    <span className="money-amount">${tipPerPerson}</span>
+                    <span className="money-amount" ref={tipPerPersonRef}>&#36;{tipPerPerson}</span>
                 </div>
                 <div className="summary-row">
                     <div>Total<span className="per-person"></span></div>
-                    <span className="money-amount">${totalPerPerson}</span>
+                    <span className="money-amount" ref={totalPerPersonRef}>&#36;{totalPerPerson}</span>
                 </div>
-                <span className="btn">Reset</span>
+                <span className="btn" onClick={handleReset}>Reset</span>
             </section>
         </form>
     )

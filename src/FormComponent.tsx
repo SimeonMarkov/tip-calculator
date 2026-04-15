@@ -37,39 +37,48 @@ export default function FormComponent() {
 
     return (
         <form>
-            <div className="bill-container">
-                <label htmlFor="bill-amount">Bill</label>
-                <div className="bill-container-grid">
-                    <input type="number" className="bill-amount" id="bill-amount" value={bill} onChange={e => handleChange(e, setBill)}/>
+            <section className="editable-info">
+                <div className="bill-container">
+                    <label htmlFor="bill-amount">Bill</label>
+                    <div className="bill-container-grid">
+                        <input type="number" className="bill-amount" id="bill-amount" value={bill}
+                               onChange={e => handleChange(e, setBill)}/>
+                    </div>
                 </div>
-            </div>
 
-            <section className="tip-percentage-container">
-                <h4>Select Tip %</h4>
-                <div className="tip-percentage-grid">
-                    {tips.map(tip => (<span key={tip} className={`tip-control predefined-tip-percentage ${tipSelected === Number(tip.slice(0, tip.length - 1)) ? 'selected' : ''}`} onClick={handleTipSelect}>{tip}</span>))}
-                    <input className={`tip-control custom-tip-control ${
-                        !tips.includes(`${tipSelected}%`) && tipSelected !== 0 ? 'selected' : ''
-                    }`} size={4} placeholder="Custom" ref={customTipRef} onChange={(e) => setTipSelected(e.target.value)} />
+                <div className="tip-percentage-container">
+                    <h4>Select Tip %</h4>
+                    <div className="tip-percentage-grid">
+                        {tips.map(tip => (<span key={tip}
+                                                className={`tip-control predefined-tip-percentage ${tipSelected === Number(tip.slice(0, tip.length - 1)) ? 'selected' : ''}`}
+                                                onClick={handleTipSelect}>{tip}</span>))}
+                        <input className={`tip-control custom-tip-control ${
+                            !tips.includes(`${tipSelected}%`) && tipSelected !== 0 ? 'selected' : ''
+                        }`} size={4} placeholder="Custom" ref={customTipRef}
+                               onChange={(e) => setTipSelected(e.target.value)}/>
+                    </div>
+                </div>
+
+                <div className="people-container">
+                    <label htmlFor="people-number">Number of people</label>
+                    <div className="people-container-grid">
+                        <input type="number" className="people-number" id="people-number" value={numberOfPeople}
+                               onChange={(e) => handleChange(e, setNumberOfPeople)}/>
+                    </div>
                 </div>
             </section>
-
-            <div className="people-container">
-                <label htmlFor="people-number">Number of people</label>
-                <div className="people-container-grid">
-                    <input type="number" className="people-number" id="people-number" value={numberOfPeople}
-                           onChange={(e) => handleChange(e, setNumberOfPeople)}/>
-                </div>
-            </div>
-
             <section className="total-summary">
-                <div className="summary-row">
-                    <div>Tip Amount<span className="per-person"></span></div>
-                    <span className="money-amount" ref={tipPerPersonRef}>&#36;{numberOfPeople ? (Number(bill) * tipSelected / 100 / numberOfPeople).toFixed(2) : '0.00'}</span>
-                </div>
-                <div className="summary-row">
-                    <div>Total<span className="per-person"></span></div>
-                    <span className="money-amount" ref={totalPerPersonRef}>&#36;{numberOfPeople ? ((Number(bill) * (1 + tipSelected / 100)) / numberOfPeople).toFixed(2) : '0.00'}</span>
+                <div className="summary-rows">
+                    <div className="summary-row">
+                        <div>Tip Amount<span className="per-person"></span></div>
+                        <span className="money-amount"
+                              ref={tipPerPersonRef}>&#36;{numberOfPeople ? (Number(bill) * tipSelected / 100 / numberOfPeople).toFixed(2) : '0.00'}</span>
+                    </div>
+                    <div className="summary-row">
+                        <div>Total<span className="per-person"></span></div>
+                        <span className="money-amount"
+                              ref={totalPerPersonRef}>&#36;{numberOfPeople ? ((Number(bill) * (1 + tipSelected / 100)) / numberOfPeople).toFixed(2) : '0.00'}</span>
+                    </div>
                 </div>
                 <span className="btn" onClick={handleReset}>Reset</span>
             </section>

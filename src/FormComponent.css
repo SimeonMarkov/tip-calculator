@@ -118,6 +118,7 @@ input {
     background-color: transparent;
     font-size: 1.25rem;
     font-weight: 900;
+    text-align: right;
 }
 
 .bill-amount {

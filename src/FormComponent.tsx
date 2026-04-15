@@ -11,13 +11,11 @@ export default function FormComponent() {
     const [totalPerPerson, setTotalPerPerson] = useState<string>('0.00');
     const [tipSelected, setTipSelected] = useState<number>(0);
 
-    const customTipRef = useRef<HTMLInputElement>({});
-    const billRef = useRef<HTMLInputElement>({});
-    const numberOfPeopleRef = useRef<HTMLInputElement>({});
-    const tipPerPersonRef = useRef<HTMLSpanElement>({});
-    const totalPerPersonRef = useRef<HTMLSpanElement>({});
+    const customTipRef = useRef<HTMLInputElement>(null);
+    const tipPerPersonRef = useRef<HTMLSpanElement>(null);
+    const totalPerPersonRef = useRef<HTMLSpanElement>(null);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>, setFunction: Function) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>, setFunction: React.SetStateAction<any>) => {
         setFunction(e.target.value);
     }
 
@@ -30,8 +28,6 @@ export default function FormComponent() {
 
     const handleReset = () => {
         customTipRef.current.value = 'Custom';
-        billRef.current.value = '0.00';
-        numberOfPeopleRef.current.value = '0';
         tipPerPersonRef.current.innerText = '$0.00';
         totalPerPersonRef.current.innerText = '$0.00';
 
@@ -60,7 +56,7 @@ export default function FormComponent() {
             <div className="bill-container">
                 <label htmlFor="bill-amount">Bill</label>
                 <div className="bill-container-grid">
-                    <input type="number" className="bill-amount" id="bill-amount" value={bill} ref={billRef} onChange={e => handleChange(e, setBill)}/>
+                    <input type="number" className="bill-amount" id="bill-amount" value={bill} onChange={e => handleChange(e, setBill)}/>
                 </div>
             </div>
 
@@ -75,7 +71,7 @@ export default function FormComponent() {
             <div className="people-container">
                 <label htmlFor="people-number">Number of people</label>
                 <div className="people-container-grid">
-                    <input type="number" className="people-number" id="people-number" value={numberOfPeople} ref={numberOfPeopleRef}
+                    <input type="number" className="people-number" id="people-number" value={numberOfPeople}
                            onChange={(e) => handleChange(e, setNumberOfPeople)}/>
                 </div>
             </div>

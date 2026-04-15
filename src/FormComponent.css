@@ -200,4 +200,8 @@ input {
         font-size: 1rem;
     }
 
+    .money-amount {
+        font-size: 3rem;
+    }
+
 }

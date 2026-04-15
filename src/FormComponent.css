@@ -58,11 +58,16 @@ form {
     background-color: var(--green_900);
 }
 
+.predefined-tip-percentage:hover {
+    cursor: pointer;
+}
+
 .custom-tip-control {
     color: var(--gray_500);
     background-color: var(--gray_50);
     font-weight: 500;
     padding-inline-start: 2rem;
+    cursor: pointer;
 }
 
 .predefined-tip-percentage.selected {
@@ -107,6 +112,10 @@ form {
     border-radius: var(--border-radius);
 }
 
+.btn:hover {
+    cursor: pointer;
+}
+
 .money-amount {
     color: var(--green_400);
     font-size: 1.5rem;
@@ -120,6 +129,8 @@ input {
     font-weight: 900;
     text-align: right;
 }
+
+
 
 .bill-amount {
     background-image: url("images/icon-dollar.svg");

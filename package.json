@@ -2,6 +2,7 @@
   "name": "tip-calculator-app",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://simeonmarkov.github.io/tip-calculator",
   "type": "module",
   "scripts": {
     "dev": "vite",

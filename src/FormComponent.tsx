@@ -49,7 +49,7 @@ export default function FormComponent() {
                 <div className="bill-container">
                     <label htmlFor="bill-amount">Bill</label>
                     <div className="bill-container-grid">
-                        <input type="number" className="bill-amount" id="bill-amount" value={bill}
+                        <input type="number" min={0.01} className="bill-amount" id="bill-amount" value={bill}
                                onChange={e => handleChange(e, setBill, String)}/>
                     </div>
                 </div>
@@ -70,7 +70,7 @@ export default function FormComponent() {
                 <div className="people-container">
                     <label htmlFor="people-number">Number of people</label>
                     <div className="people-container-grid">
-                        <input type="number" className="people-number" id="people-number" value={numberOfPeople}
+                        <input type="number" min={1} className="people-number" id="people-number" value={numberOfPeople}
                                onChange={(e) => handleChange(e, setNumberOfPeople, Number)}/>
                     </div>
                 </div>

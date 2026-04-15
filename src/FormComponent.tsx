@@ -13,21 +13,29 @@ export default function FormComponent() {
     const tipPerPersonRef = useRef<HTMLSpanElement>(null);
     const totalPerPersonRef = useRef<HTMLSpanElement>(null);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>, setFunction: React.SetStateAction<any>) => {
-        setFunction(e.target.value);
+    const handleChange = <T,>(e: React.ChangeEvent<HTMLInputElement>, setFunction: React.Dispatch<React.SetStateAction<T>>, transform: (value: string) => T) => {
+        setFunction(transform(e.currentTarget.value));
     }
 
-    const handleTipSelect = (e) => {
+    const handleTipSelect = (e: React.MouseEvent<HTMLSpanElement>) => {
         document.querySelector('.selected')?.classList.remove("selected");
-        e.target.classList.add("selected");
+        e.currentTarget.classList.add("selected");
 
-        setTipSelected(Number(e.target.innerText.replace('%', '')));
+        setTipSelected(Number(e.currentTarget.innerText.replace('%', '')));
     }
 
     const handleReset = () => {
-        customTipRef.current.value = 'Custom';
-        tipPerPersonRef.current.innerText = '$0.00';
-        totalPerPersonRef.current.innerText = '$0.00';
+        if (customTipRef.current) {
+            customTipRef.current.value = 'Custom';
+        }
+
+        if (tipPerPersonRef.current) {
+            tipPerPersonRef.current.innerText = '$0.00';
+        }
+
+        if (totalPerPersonRef.current) {
+            totalPerPersonRef.current.innerText = '$0.00';
+        }
 
         setBill('0.00');
         setNumberOfPeople(0);
@@ -42,7 +50,7 @@ export default function FormComponent() {
                     <label htmlFor="bill-amount">Bill</label>
                     <div className="bill-container-grid">
                         <input type="number" className="bill-amount" id="bill-amount" value={bill}
-                               onChange={e => handleChange(e, setBill)}/>
+                               onChange={e => handleChange(e, setBill, String)}/>
                     </div>
                 </div>
 
@@ -55,7 +63,7 @@ export default function FormComponent() {
                         <input className={`tip-control custom-tip-control ${
                             !tips.includes(`${tipSelected}%`) && tipSelected !== 0 ? 'selected' : ''
                         }`} size={4} placeholder="Custom" ref={customTipRef}
-                               onChange={(e) => setTipSelected(e.target.value)}/>
+                               onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTipSelected(Number(e.currentTarget.value))}/>
                     </div>
                 </div>
 
@@ -63,7 +71,7 @@ export default function FormComponent() {
                     <label htmlFor="people-number">Number of people</label>
                     <div className="people-container-grid">
                         <input type="number" className="people-number" id="people-number" value={numberOfPeople}
-                               onChange={(e) => handleChange(e, setNumberOfPeople)}/>
+                               onChange={(e) => handleChange(e, setNumberOfPeople, Number)}/>
                     </div>
                 </div>
             </section>
